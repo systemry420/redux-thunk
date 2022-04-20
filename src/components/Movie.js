@@ -1,14 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
+import { fetchMovies } from '../redux/counter/actions'
 
-const Movie = ({ fetchMovies, movies }) => {
+const Movie = ({  }) => {
+    const dispatch = useDispatch()
+    const { movies } = useSelector(state => state.movies)
+
   React.useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => response.json())
-    .then(json => {
-      fetchMovies(json)
-    })
-  
+    dispatch(fetchMovies())
     return () => {
     }
   }, [])
@@ -20,15 +21,5 @@ const Movie = ({ fetchMovies, movies }) => {
   )
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-      fetchMovies: (movies) => dispatch({ type: 'FETCH', payload: movies})
-    }
-}
 
-const mapStateToProps = state => {
-    return {
-        movies: state.movies.movies
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Movie)
+export default (Movie)

@@ -11,12 +11,14 @@ import Counter from "./components/Counter";
 import Movie from "./components/Movie";
 import { movieReducer } from "./redux/movie/movieReducer";
 import { connect } from "react-redux";
+import thunk from 'redux-thunk'
+import {applyMiddleware} from 'redux'
 
 const rootReducer = combineReducers({
   counter: reducer,
   movies: movieReducer
 })
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 
 function App() {
