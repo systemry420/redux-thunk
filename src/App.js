@@ -13,12 +13,16 @@ import { movieReducer } from "./redux/movie/movieReducer";
 import { connect } from "react-redux";
 import thunk from 'redux-thunk'
 import {applyMiddleware} from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 const rootReducer = combineReducers({
   counter: reducer,
   movies: movieReducer
 })
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+)
 
 
 function App() {

@@ -6,7 +6,7 @@ import { fetchMovies } from '../redux/counter/actions'
 
 const Movie = ({  }) => {
     const dispatch = useDispatch()
-    const { movies } = useSelector(state => state.movies)
+    const { movies, loading, error } = useSelector(state => state.movies)
 
   React.useEffect(() => {
     dispatch(fetchMovies())
@@ -16,6 +16,8 @@ const Movie = ({  }) => {
   
   return (
     <div>
+        {loading && <h2>Loading</h2>}
+        {error && <h2>{error}</h2>}
         <h1>{movies.title}</h1>
     </div>
   )
